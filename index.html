@@ -3,15 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jokes App</title>
-    <link rel="stylesheet" href="/css/style.css" />
+    <title>Jokes Saver</title>
   </head>
   <body>
+    <!-- Generated Jokes Container -->
     <div class="container">
-      <h1>Jokes on Me Today!</h1>
-      <div id="joke" class="joke"></div>
-      <button id="jokebtn" class="btn">Make Me Laugh!</button>
+      <h1>Jokes Saver</h1>
+      <div class="joke-container" id="joke-container"></div>
+      <button id="new-joke-btn">New Joke</button>
+    </div>
+
+    <!-- Favorite Jokes Container -->
+    <div class="favorites-container">
+      <h2 class="favorites-header">Favorites</h2>
+      <div class="favorites-list" id="favorites-list"></div>
     </div>
   </body>
-  <script src="/js/app.js"></script>
 </html>
