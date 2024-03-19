@@ -55,6 +55,33 @@ function saveJoke(joke) {
     localStorage.setItem('savedJokes', JSON.stringify(savedJokes));
 }
 
+// function to display saved jokes
+function displaySavedJokes(savedJokes) {
+    const favoritesList = document.getElementById('favorites-list');
+    favoritesList.innerHTML = ''; // Clear previous saved jokes
+
+    savedJokes.forEach(joke => {
+        const jokeDiv = document.createElement('div');
+        jokeDiv.classList.add('joke-container');
+
+        const setupText = document.createElement('p');
+        setupText.textContent = joke.setup;
+
+        const punchlineText = document.createElement('p');
+        punchlineText.textContent = joke.delivery;
+
+        jokeDiv.appendChild(setupText);
+        jokeDiv.appendChild(punchlineText);
+        favoritesList.appendChild(jokeDiv);
+    });
+}
+
+// function to load saved jokes from localstorage
+function loadSavedJokes() {
+    const savedJokes = JSON.parse(localStorage.getItem('savedJokes')) || [];
+    displaySavedJokes(savedJokes);
+}
+
 window.onload = async () => {
     const randomJoke = await fetchRandomJokes();
     if (randomJoke) {
@@ -63,4 +90,5 @@ window.onload = async () => {
         const jokeContainer = document.getElementById('joke-container');
         jokeContainer.innerHTML = '<p>Failed to fetch joke. Please try again later.</p>';
     }
+    loadSavedJokes();
 }
