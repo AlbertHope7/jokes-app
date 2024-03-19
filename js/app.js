@@ -1,3 +1,5 @@
+
+
 // function to display random joke from JokeAPI
 async function fetchRandomJokes() {
     try {
@@ -29,6 +31,17 @@ function displayJoke(joke) {
     jokeContainer.appendChild(jokeDiv);
 
 }
+
+// function to handle click on "New Joke" button
+document.getElementById('new-joke-btn').addEventListener('click', async () => {
+    const randomJoke = await fetchRandomJokes();
+    if (randomJoke) {
+        displayJoke(randomJoke);
+    } else {
+        const jokeContainer = document.getElementById('joke-container');
+        jokeContainer.innerHTML = '<p>Failed to fetch joke. Please try again later.</p>';
+    }
+})
 
 
 window.onload = async () => {
