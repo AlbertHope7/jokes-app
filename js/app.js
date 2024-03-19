@@ -26,8 +26,13 @@ function displayJoke(joke) {
     const punchlineText = document.createElement('p');
     punchlineText.textContent = joke.delivery;
 
+    const saveButton = document.createElement('button');
+    saveButton.textContent = 'Add to Favorites!';
+    saveButton.addEventListener('click', () => saveJoke(joke));
+
     jokeDiv.appendChild(setupText);
     jokeDiv.appendChild(punchlineText);
+    jokeDiv.appendChild(saveButton);
     jokeContainer.appendChild(jokeDiv);
 
 }
@@ -43,6 +48,12 @@ document.getElementById('new-joke-btn').addEventListener('click', async () => {
     }
 })
 
+// Function to save a joke to localStorage
+function saveJoke(joke) {
+    const savedJokes = JSON.parse(localStorage.getItem('savedJokes')) || [];
+    savedJokes.push(joke);
+    localStorage.setItem('savedJokes', JSON.stringify(savedJokes));
+}
 
 window.onload = async () => {
     const randomJoke = await fetchRandomJokes();
